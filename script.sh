@@ -11,7 +11,7 @@ WEEKFROMNOW=$((${TIMESTAMP} + 604800))
 CURRTIMESTAMP=$(date +%s)
 
 # check if one week has passed
-if [[ ${WEEKFROMNOW} -ge ${CURRTIMESTAMP} ]]; then
+if [[ ${WEEKFROMNOW} -le ${CURRTIMESTAMP} ]]; then
     # alert for update/upgrade
     echo "A week has passed, Update your system.."
     read -p "Run pacman -Syu ? [y/N]" INPUT
