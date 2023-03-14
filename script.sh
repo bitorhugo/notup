@@ -11,13 +11,13 @@ WEEKFROMNOW=$((${TIMESTAMP} + 604800))
 CURRTIMESTAMP=$(date +%s)
 
 # check if one week has passed
-if [[ ${WEEKFROMNOW} -le ${CURRTIMESTAMP} ]]; then
+if [[ ${CURRTIMESTAMP} -gt ${WEEKFROMNOW} ]]; then
     # alert for update/upgrade
     echo "A week has passed, Update your system.."
-    read -p "Run pacman -Syu ? [y/N]" INPUT
+    echo "Run pacman -Syu ? [y/N]"
+    read INPUT
     case ${INPUT} in
-        [yY]) sudo pacman -Syu
-              date +%s > ${FILE};; # update timestamp
-        *) exit 1;;
+        [yY]) date +%s > ${FILE}
+              sudo pacman -Syu;; # update timestamp
     esac
 fi
